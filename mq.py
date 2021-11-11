@@ -25,20 +25,20 @@ class MQ():
     GAS_CO                       = 1
     GAS_CO2                      = 2
 
-    def __init__(self, Ro=3.8, analogPin=0):
+    def __init__(self, Ro=10, analogPin=0):
         self.Ro = Ro
         self.MQ_PIN = analogPin
         self.adc = MCP3008()
         
-        self.NH4Curve = [1.0,0.415,-0.41]    # two points are taken from the curve. 
+        self.NH4Curve = [1.0,0.42,-0.41]    # two points are taken from the curve. 
                                             # with these two points, a line is formed which is "approximately equivalent"
                                             # to the original curve. 
                                             # data format:{ x, y, slope}; point1: (lg200, 0.21), point2: (lg10000, -0.59) 
-        self.COCurve = [1.0,0.46,-0.224]     # two points are taken from the curve. 
+        self.COCurve = [1.0,0.46,-0.22]     # two points are taken from the curve. 
                                             # with these two points, a line is formed which is "approximately equivalent" 
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.72), point2: (lg10000,  0.15)
-        self.CO2Curve =[1.0,0.38,-0.367]   # two points are taken from the curve. 
+        self.CO2Curve =[1.0,0.38,-0.37]   # two points are taken from the curve. 
                                             # with these two points, a line is formed which is "approximately equivalent" 
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.53), point2: (lg10000,  -0.22)  
@@ -118,7 +118,7 @@ class MQ():
     ############################################################################ 
     def MQGetGasPercentage(self, rs_ro_ratio, gas_id):
         if ( gas_id == self.GAS_NH4 ):
-            return self.MQGetPercentage(rs_ro_ratio, self.LPGCurve)
+            return self.MQGetPercentage(rs_ro_ratio, self.NH4Curve)
         elif ( gas_id == self.GAS_CO ):
             return self.MQGetPercentage(rs_ro_ratio, self.COCurve)
         elif ( gas_id == self.GAS_CO2 ):
