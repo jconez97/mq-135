@@ -8,7 +8,7 @@ class MQ():
 
     ######################### Hardware Related Macros #########################
     MQ_PIN                       = 0        # define which analog input channel you are going to use (MCP3008)
-    RL_VALUE                     = 5        # define the load resistance on the board, in kilo ohms
+    RL_VALUE                     = 20        # define the load resistance on the board, in kilo ohms
     RO_CLEAN_AIR_FACTOR          = 3.8     # RO_CLEAR_AIR_FACTOR=(Sensor resistance in clean air)/RO,
                                             # which is derived from the chart in datasheet
  
